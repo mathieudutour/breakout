@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<title>AEGIS — Brick Survivors</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="game-wrap">
+    <canvas id="game"></canvas>
+
+    <!-- Start screen -->
+    <div id="start-screen" class="overlay">
+      <h1>AEGIS<span>// LAST DEFLECTOR</span></h1>
+      <p class="tagline">A Breakout Roguelite</p>
+      <div class="story">
+        <p>The sky is falling — not as rain, but as <b>the Tessellation</b>:
+        a crystalline corruption that crushes everything it lands on, growing row by row.</p>
+        <p>You are <b>AEGIS</b>, the last deflector core. Shatter the swarm,
+        salvage its data, and grow stronger <i>within</i> each stand —
+        then forge what you reclaim into a stronger core for the next.</p>
+      </div>
+      <div class="how">
+        <p>Move &nbsp;<b>Mouse</b> / <b>← →</b> &nbsp;·&nbsp; Launch &nbsp;<b>Click</b> / <b>Space</b> &nbsp;·&nbsp; Pause &nbsp;<b>P</b></p>
+      </div>
+      <div class="btnrow">
+        <button id="start-btn" class="btn">HOLD THE LINE</button>
+        <button id="forge-btn" class="btn ghost">⚒ THE FORGE</button>
+      </div>
+    </div>
+
+    <!-- Forge (meta progression shop) -->
+    <div id="forge-screen" class="overlay hidden">
+      <h2>⚒ THE FORGE</h2>
+      <p class="sub">Spend salvaged Cores on permanent upgrades</p>
+      <div id="forge-body"></div>
+      <button id="forge-back" class="btn ghost">← BACK</button>
+    </div>
+
+    <!-- Level up screen -->
+    <div id="levelup-screen" class="overlay hidden">
+      <h2>LEVEL UP</h2>
+      <p class="sub">Reinforce the Aegis</p>
+      <div id="card-row"></div>
+      <div id="levelup-actions"></div>
+    </div>
+
+    <!-- Game over screen -->
+    <div id="gameover-screen" class="overlay hidden">
+      <h2 class="dead">THE LINE BREAKS</h2>
+      <div id="stats"></div>
+      <div class="btnrow">
+        <button id="restart-btn" class="btn">REDEPLOY</button>
+        <button id="forge-btn2" class="btn ghost">⚒ THE FORGE</button>
+      </div>
+    </div>
+
+    <!-- Pause -->
+    <div id="pause-screen" class="overlay hidden">
+      <h2>PAUSED</h2>
+      <p class="sub">Press <b>P</b> or <b>Esc</b> to resume</p>
+    </div>
+  </div>
+
+  <script src="meta.js"></script>
+  <script src="upgrades.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
