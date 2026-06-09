@@ -675,6 +675,8 @@
   // ============================================================
   function render() {
     ctx.clearRect(0, 0, W, H);
+    // No run in progress yet (START screen): nothing to draw on the canvas.
+    if (!paddle) return;
     ctx.save();
     if (shake > 0) ctx.translate(rand(-shake, shake), rand(-shake, shake));
 
@@ -883,8 +885,13 @@
   function loop(t) {
     const dt = Math.min(0.033, (t - lastT) / 1000 || 0);
     lastT = t;
-    update(dt);
-    render();
+    // Never let a single bad frame kill the loop — always reschedule.
+    try {
+      update(dt);
+      render();
+    } catch (e) {
+      console.error(e);
+    }
     requestAnimationFrame(loop);
   }
 
