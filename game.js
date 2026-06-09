@@ -15,13 +15,20 @@
   const gameoverScreen = $("gameover-screen");
   const pauseScreen = $("pause-screen");
   const cardRow = $("card-row");
+  const wrap = $("game-wrap");
 
   // ---- Logical sizing (DPR-aware) ----
   let W = 0, H = 0, DPR = 1;
   function resize() {
     DPR = Math.min(window.devicePixelRatio || 1, 2);
-    W = window.innerWidth;
-    H = window.innerHeight;
+    // Use the *visual* viewport so we exclude iOS Safari's toolbars; this
+    // keeps the canvas and the HTML overlays sized to the truly visible area.
+    const vv = window.visualViewport;
+    W = (vv && vv.width) || window.innerWidth;
+    H = (vv && vv.height) || window.innerHeight;
+    // Pin the wrapper (and thus the overlays) to the visible height so the
+    // bottom buttons never hide behind the browser toolbar.
+    if (wrap) { wrap.style.width = W + "px"; wrap.style.height = H + "px"; }
     canvas.style.width = W + "px";
     canvas.style.height = H + "px";
     canvas.width = Math.floor(W * DPR);

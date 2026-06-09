@@ -28,10 +28,12 @@ html, body {
 #game-wrap {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: 100vh;       /* fallback */
+  height: 100dvh;      /* exclude mobile browser toolbars; JS also pins px */
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 #game {
@@ -54,6 +56,8 @@ html, body {
   backdrop-filter: blur(4px);
   z-index: 10;
   padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top));
+  padding-bottom: calc(28px + env(safe-area-inset-bottom));
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
